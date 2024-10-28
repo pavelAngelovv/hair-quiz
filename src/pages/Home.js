@@ -1,7 +1,6 @@
-// src/pages/Home.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css'; // We’ll create this file for styling
+import '../styles/home.css';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -14,11 +13,9 @@ const Home = () => {
         <div className="home">
             <div className="home__background">
                 <div className="home__overlay">
-                    <h1 className="home__title">Find Your Perfect Hair Care Routine</h1>
-                    <p className="home__description">Take this quick quiz to get personalized recommendations for your hair type and needs.</p>
-                    <button className="home__button" onClick={handleStartQuiz}>
-                        Start the Quiz
-                    </button>
+                    <h1 className="title">Build a self care routine <br/> suitable for you</h1>
+                    <p className="description">Take out test to get a personalised self care <br/> routine based on your needs.</p>
+                    <button className="button-text home__button" onClick={handleStartQuiz}>Start the Quiz</button>
                 </div>
             </div>
         </div>

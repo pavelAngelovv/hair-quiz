@@ -1,0 +1,70 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.home__background {
+    position: relative;
+    top: 0;
+    height: 55vh;
+    width: 100%;
+    background-image: url('../../public/9545e9b86afd1e9c431704007c1c0714.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.home__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.title {
+    font-family: "Gayathri", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 55px;
+    margin: 5px;
+}
+
+.description {
+    font-family: "Lexend", sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+}
+
+.button-text {
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+}
+
+.home__button {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #4db8ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+}
+
+.home__button:hover {
+    background-color: #3a9ed9;
+}
+
+
