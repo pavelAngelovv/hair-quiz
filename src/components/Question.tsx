@@ -39,7 +39,9 @@ const Question: React.FC<QuestionProps> = ({
     };
 
     const handleNext = () => {
-        navigate(nextQuestionPath);
+        if (selectedAnswer) {
+            navigate(nextQuestionPath);
+        }
     };
 
     const handleBack = () => {
@@ -64,7 +66,11 @@ const Question: React.FC<QuestionProps> = ({
             </div>
             <div className="navigation-buttons">
                 <button className="back-button" onClick={handleBack}>Back</button>
-                <button className="next-button" onClick={handleNext}>
+                <button
+                    className="next-button"
+                    onClick={handleNext}
+                    disabled={!selectedAnswer} // Disable button if no answer is selected
+                >
                     Next question <img src={arrow} alt="Arrow" style={{ width: '20px', marginLeft: '8px', marginBottom: '-5px' }} />
                 </button>
             </div>

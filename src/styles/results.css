@@ -1,13 +1,13 @@
 .results {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 115vh;
 }
 
 .results__background {
     position: relative;
     top: 0;
-    height: 50vh;
+    height: 55vh;
     width: 100%;
     background-image: url('../images/c77ec1fc9d27c36047d092f5787f5336.jpeg');
     background-size: cover;
@@ -73,8 +73,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 400px;
-    width: 280px !important;
+    height: 450px;
+    width: 300px !important;
     transition: transform 0.2s;
     background-color: #EEF7FB;
     justify-content: center;
@@ -94,8 +94,8 @@
 
 .text-only-card p {
     text-align: left;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
     font-family: "Lexend", sans-serif;
     font-weight: 200;
     font-style: normal;
@@ -110,8 +110,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 270px;
-    width: 280px;
+    height: 320px;
+    width: 320px;
     transition: transform 0.2s;
     background-color: #f4f4f9;
     justify-content: center;
@@ -148,7 +148,7 @@
 
 .slick-slider {
     margin-top: -60px;
-    width: 1000px;
+    width: 1050px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;

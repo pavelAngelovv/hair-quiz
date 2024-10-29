@@ -80,6 +80,15 @@
     font-size: 14px;
 }
 
+.next-button:disabled {
+    background: #d7d7d7;
+    cursor:inherit;
+}
+
+.next-button:disabled:hover {
+    background: #d7d7d7;
+}
+
 .next-button:hover {
     background: #8ed5f4;
 }
