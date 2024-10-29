@@ -10,7 +10,7 @@
     top: 0;
     height: 55vh;
     width: 100%;
-    background-image: url('../../public/9545e9b86afd1e9c431704007c1c0714.jpeg');
+    background-image: url('../images/9545e9b86afd1e9c431704007c1c0714.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -48,23 +48,24 @@
 
 .button-text {
     font-family: "Lexend", sans-serif;
-    font-weight: 500;
+    font-weight: 200;
 }
 
 .home__button {
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 0.8rem 1.5rem;
-    background-color: #4db8ff;
+    background-color: #C3EDFF;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 30px;
+    color: black;
 }
 
 .home__button:hover {
-    background-color: #3a9ed9;
+    background-color: #7ccdef;
 }
 
 

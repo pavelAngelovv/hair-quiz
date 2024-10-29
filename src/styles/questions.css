@@ -1,0 +1,86 @@
+.question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.question-title {
+    font-family: "Gayathri", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 45px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.answer-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.outlined-button {
+    border: 1px solid #5BC1ED;
+    background: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: 200px;
+    transition: background 0.3s;
+    margin-bottom: 2rem;
+    height: 40px;
+    text-align: left;
+    color: rgb(90, 90, 90);
+}
+
+.outlined-button:hover {
+    background: #c3edff;
+}
+
+.navigation-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #6f6f6f;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 1rem;
+    font-family: "Lexend", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+.back-button:hover {
+    color: #2c2c2c;
+}
+
+.next-button {
+    background: #c3edff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: "Lexend", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.next-button:hover {
+    background: #8ed5f4;
+}
+
+.selected {
+    background: #c3edff;
+    color: rgb(0, 0, 0);
+    border: 1px solid #5BC1ED;
+}
