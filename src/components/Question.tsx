@@ -39,9 +39,7 @@ const Question: React.FC<QuestionProps> = ({
     };
 
     const handleNext = () => {
-        if (selectedAnswer) {
-            navigate(nextQuestionPath);
-        }
+        navigate(nextQuestionPath);
     };
 
     const handleBack = () => {

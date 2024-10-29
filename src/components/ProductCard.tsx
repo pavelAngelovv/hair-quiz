@@ -1,6 +1,6 @@
 import React from 'react';
-import heartIcon from '../images/heart.png'; // Outline heart icon
-import filledHeartIcon from '../images/heart-filled.png'; // Filled heart icon
+import heartIcon from '../images/heart.png';
+import filledHeartIcon from '../images/heart-filled.png';
 
 interface Product {
     image: {
