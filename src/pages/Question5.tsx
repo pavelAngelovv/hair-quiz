@@ -6,7 +6,7 @@ const Question5: React.FC = () => {
         <Question
             question="What is your natural hair color(s) today?"
             answers={['Black', 'Brown', 'Blonde', 'Red/Orange', 'Silver/Grey']}
-            questionKey="question5Answer"
+            questionKey="naturalColor"
             nextQuestionPath="/results"
             previousQuestionPath="/question4"
             currentQuestion={5}

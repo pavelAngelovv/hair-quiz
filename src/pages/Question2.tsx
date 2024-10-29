@@ -6,7 +6,7 @@ const Question2: React.FC = () => {
         <Question
             question="How often do you wash your hair?"
             answers={['Daily', 'Every other day', 'Twice a week', 'Once a week', 'Every two weeks']}
-            questionKey="question2Answer"
+            questionKey="howOftenWashHair"
             nextQuestionPath="/question3"
             previousQuestionPath="/question1"
             currentQuestion={2}

@@ -1,0 +1,136 @@
+.results {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.results__background {
+    position: relative;
+    top: 0;
+    height: 50vh;
+    width: 100%;
+    background-image: url('../images/9545e9b86afd1e9c431704007c1c0714.jpeg'); /* Use the same background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.results__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.results__title {
+    font-family: "Gayathri", sans-serif;
+    font-weight: 300;
+    font-size: 55px;
+    margin: 5px;
+}
+
+.results__description {
+    font-family: "Lexend", sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+}
+
+.card-image {
+    background: white; /* Background color of the card */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    overflow: hidden; /* Ensures content stays within card */
+    display: flex; /* Allows flexible layout */
+    flex-direction: column; /* Stack children vertically */
+    height: 300px; /* Fixed height for uniformity */
+    width: 300px; /* Fixed height for uniformity */
+    transition: transform 0.2s; /* Smooth scaling on hover */
+    background-color: #f4f4f9; /* Fallback background color */
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-image img {
+    width: 100%; /* Image takes full width */
+    height: 250px; /* Fixed height for images */
+    object-fit: contain; /* Maintain aspect ratio */
+    border-radius: 20px;
+}
+
+.card-container h2 {
+    width: 320px;
+    font-family: "Gayathri", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 22px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-container p {
+    font-family: "Gayathri", sans-serif;
+    font-style: italic;
+    font-weight: 150;
+    font-size: 19px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -10px;
+}
+
+.slick-slider {
+    margin-top: -80px; /* Space between the overlay and cards */
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.slick-slide {
+    display: flex; /* Ensures card layout is consistent */
+    justify-content: center; /* Center the cards */
+}
+
+.slick-arrow {
+    font-size: 30px; /* Adjust the size of the arrows */
+    color: white; /* Color of the arrows */
+    z-index: 2; /* Ensure arrows are above other elements */
+}
+
+.slick-prev {
+    left: -50px; /* Position the previous arrow */
+}
+
+.slick-next {
+    right: -50px; /* Position the next arrow */
+}
+
+/* Optional: Add hover effect */
+.slick-arrow:hover {
+    background: #007bff; /* Change background color on hover */
+    border-radius: 50%; /* Make them round */
+    padding: 10px; /* Add padding for a better click area */
+}
+
+
+
+@media (max-width: 768px) {
+    .results__cards {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .results__cards {
+        grid-template-columns: 1fr; /* 1 card on mobile screens */
+    }
+}
