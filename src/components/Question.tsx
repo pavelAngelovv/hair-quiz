@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/questions.css';
 import arrow from '../images/right-arrow.png';
+import CircularProgress from './CircularProgress.tsx';
 
 interface QuestionProps {
     question: string;
@@ -9,13 +10,21 @@ interface QuestionProps {
     questionKey: string;
     nextQuestionPath: string;
     previousQuestionPath: string;
+    currentQuestion: number;
 }
 
-const Question: React.FC<QuestionProps> = ({ question, answers, questionKey, nextQuestionPath, previousQuestionPath }) => {
+const Question: React.FC<QuestionProps> = ({
+    question,
+    answers,
+    questionKey,
+    nextQuestionPath,
+    previousQuestionPath,
+    currentQuestion,
+}) => {
     const navigate = useNavigate();
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
 
-    const alphabetLabels = "abcdefghijklmnopqrstuvwxyz".split(""); // Array of letters for labels
+    const alphabetLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
     useEffect(() => {
         const storedAnswer = localStorage.getItem(questionKey);
@@ -25,17 +34,19 @@ const Question: React.FC<QuestionProps> = ({ question, answers, questionKey, nex
     }, [questionKey]);
 
     const handleAnswerSelection = (answer: string) => {
-        setSelectedAnswer(answer); 
-        localStorage.setItem(questionKey, answer); 
+        setSelectedAnswer(answer);
+        localStorage.setItem(questionKey, answer);
     };
 
     const handleNext = () => {
-        navigate(nextQuestionPath); 
+        navigate(nextQuestionPath);
     };
 
     const handleBack = () => {
-        navigate(previousQuestionPath); 
+        navigate(previousQuestionPath);
     };
+
+    const progressValue = (currentQuestion / 5) * 100;
 
     return (
         <div className="question-container">
@@ -56,6 +67,14 @@ const Question: React.FC<QuestionProps> = ({ question, answers, questionKey, nex
                 <button className="next-button" onClick={handleNext}>
                     Next question <img src={arrow} alt="Arrow" style={{ width: '20px', marginLeft: '8px', marginBottom: '-5px' }} />
                 </button>
+            </div>
+
+            <div className="progress-container">
+                <CircularProgress
+                    value={progressValue}
+                    currentQuestion={currentQuestion}
+                    totalQuestions={5}
+                />
             </div>
         </div>
     );

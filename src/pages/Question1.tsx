@@ -1,5 +1,5 @@
 import React from 'react';
-import Question from '../components/Question.tsx'; // Adjust the path as necessary
+import Question from '../components/Question.tsx';
 
 const Question1: React.FC = () => {
     return (
@@ -9,6 +9,7 @@ const Question1: React.FC = () => {
             questionKey="question1Answer"
             nextQuestionPath="/question2"
             previousQuestionPath="/"
+            currentQuestion={1}
         />
     );
 };

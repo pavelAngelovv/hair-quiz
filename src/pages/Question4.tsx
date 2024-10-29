@@ -9,6 +9,7 @@ const Question4: React.FC = () => {
             questionKey="question4Answer"
             nextQuestionPath="/question5"
             previousQuestionPath="/question3"
+            currentQuestion={4}
         />
     );
 };
