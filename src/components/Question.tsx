@@ -69,7 +69,6 @@ const Question: React.FC<QuestionProps> = ({
                 <button
                     className="next-button"
                     onClick={handleNext}
-                    disabled={!selectedAnswer} // Disable button if no answer is selected
                 >
                     Next question <img src={arrow} alt="Arrow" style={{ width: '20px', marginLeft: '8px', marginBottom: '-5px' }} />
                 </button>

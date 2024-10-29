@@ -73,7 +73,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 450px;
+    height: 480px;
     width: 300px !important;
     transition: transform 0.2s;
     background-color: #EEF7FB;
@@ -84,7 +84,7 @@
 
 .text-only-card h2 {
     font-family: "Gayathri", sans-serif;
-    padding-top: 20px;
+    padding-top: 25px;
     font-weight: 700;
     font-style: normal;
     font-size: 22px;
@@ -99,7 +99,7 @@
     font-family: "Lexend", sans-serif;
     font-weight: 200;
     font-style: normal;
-    font-size: 16px;
+    font-size: 16.5px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -144,6 +144,47 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: -10px;
+}
+
+.card-container {
+    position: relative; /* Required for absolute positioning of the button */
+}
+
+.card-image {
+    position: relative; /* Make this relative to position the button */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 320px;
+    transition: transform 0.2s;
+    background-color: #f4f4f9;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wishlist-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    transition: transform 0.2s;
+}
+
+.wishlist-button img {
+    width: 30px; /* Default size */
+    height: 25px; /* Default size */
+}
+
+.wishlist-button:hover img {
+    transform: scale(1.2); /* Slightly larger on hover */
 }
 
 .slick-slider {

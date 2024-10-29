@@ -1,4 +1,6 @@
 import React from 'react';
+import heartIcon from '../images/heart.png'; // Outline heart icon
+import filledHeartIcon from '../images/heart-filled.png'; // Filled heart icon
 
 interface Product {
     image: {
@@ -19,6 +21,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onToggleWishlist, is
         <div className='card-container'>
             <div className="card-image">
                 <img src={product.image.src} alt={product.title} />
+                <button 
+                    className="wishlist-button"
+                    onClick={onToggleWishlist}
+                >
+                    <img src={isInWishlist ? filledHeartIcon : heartIcon} alt="Wishlist" />
+                </button>
             </div>
             <h2>{product.title}</h2>
             <p>${product.price}</p>

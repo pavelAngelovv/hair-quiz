@@ -65,15 +65,15 @@ const Results: React.FC<ResultsProps> = ({ userAnswers }) => {
     const wantedBenefit = localStorage.getItem('wantedBenefit');
     const anythingTroubling = localStorage.getItem('anythingTroubling');
 
+    const userCriteria = [hairType, howOftenWashHair, wantedBenefit, anythingTroubling];
+    const anyCriteriaSelected = userCriteria.some(criteria => criteria);
+
     const calculateMatchScore = (product: Product) => {
         const { title, body_html, tags } = product;
         let score = 0;
 
-        const userCriteria = [hairType, howOftenWashHair, wantedBenefit, anythingTroubling];
-
         userCriteria.forEach(criteria => {
             if (criteria) {
-
                 if (title.toLowerCase().includes(criteria.toLowerCase())) {
                     score += 3;
                 }
@@ -90,21 +90,27 @@ const Results: React.FC<ResultsProps> = ({ userAnswers }) => {
     };
 
 
-    const filteredProducts = products.filter(product => {
-        const userCriteria = [hairType, howOftenWashHair, wantedBenefit, anythingTroubling];
-        return userCriteria.some(criteria => criteria && (
-            product.title.toLowerCase().includes(criteria.toLowerCase()) ||
-            product.body_html.toLowerCase().includes(criteria.toLowerCase()) ||
-            product.tags.some(tag => tag.toLowerCase().includes(criteria.toLowerCase()))
-        ));
-    });
-
+    const filteredProducts = anyCriteriaSelected
+        ? products.filter(product => {
+            return userCriteria.some(criteria => criteria && (
+                product.title.toLowerCase().includes(criteria.toLowerCase()) ||
+                product.body_html.toLowerCase().includes(criteria.toLowerCase()) ||
+                product.tags.some(tag => tag.toLowerCase().includes(criteria.toLowerCase()))
+            ));
+        })
+        : products;
 
     const scoredProducts = filteredProducts.map(product => ({
         product,
         score: calculateMatchScore(product),
-    })).sort((a, b) => b.score - a.score);
+    }));
 
+    const sortedProducts = scoredProducts.sort((a, b) => {
+        const isAInWishlist = wishlist.includes(a.product.id) ? 1 : 0;
+        const isBInWishlist = wishlist.includes(b.product.id) ? 1 : 0;
+
+        return isBInWishlist - isAInWishlist || b.score - a.score; // First by wishlist, then by score
+    });
 
     const SampleNextArrow = (props: any) => {
         const { className, onClick } = props;
@@ -119,14 +125,13 @@ const Results: React.FC<ResultsProps> = ({ userAnswers }) => {
         );
     };
 
-
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 3,
-        nextArrow: scoredProducts.length > 2 ? <SampleNextArrow /> : null,
+        nextArrow: sortedProducts.length > 2 ? <SampleNextArrow /> : null,
         responsive: [
             {
                 breakpoint: 768,
@@ -163,14 +168,12 @@ const Results: React.FC<ResultsProps> = ({ userAnswers }) => {
                 <p>Loading...</p>
             ) : (
                 <Slider {...settings}>
-                    {/* Render the first text-only card */}
                     <div className="text-only-card">
                         <h2>Daily routine</h2>
                         <p>Perfect for if you're looking for soft, nourished skin, our moisturizing body washes are made with skin-natural nutrients that work with your skin to replenish moisture. With a light formula, the bubbly lather leaves your skin feeling cleansed and cared for. And by choosing relaxing fragrances, you can add a moment of calm to the end of your day.</p>
                     </div>
 
-                    {/* Render the rest of the products */}
-                    {scoredProducts.map(({ product }) => (
+                    {sortedProducts.map(({ product }) => (
                         <div key={product.id}>
                             <ProductCard
                                 product={product}
