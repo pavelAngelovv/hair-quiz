@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import ProductCard from '../components/ProductCard.tsx';
-import '../styles/results.css'; // Import any required CSS for styling
-import 'slick-carousel/slick/slick.css'; // Import slick CSS
-import 'slick-carousel/slick/slick-theme.css'; // Import slick theme CSS
+import arrow from '../images/right-arrow-slide.png';
+import '../styles/results.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-// Define types for the product
 interface Product {
     id: number;
     title: string;
@@ -14,7 +15,7 @@ interface Product {
         src: string;
     };
     tags: string[];
-    body_html: string; // for product description
+    body_html: string;
 }
 
 interface ResultsProps {
@@ -28,6 +29,8 @@ const Results: React.FC<ResultsProps> = ({ userAnswers }) => {
         const savedWishlist = localStorage.getItem('wishlist');
         return savedWishlist ? JSON.parse(savedWishlist) : [];
     });
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -57,13 +60,11 @@ const Results: React.FC<ResultsProps> = ({ userAnswers }) => {
         localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
     };
 
-    // Retrieve user inputs from local storage
     const hairType = localStorage.getItem('hairType');
     const howOftenWashHair = localStorage.getItem('howOftenWashHair');
     const wantedBenefit = localStorage.getItem('wantedBenefit');
     const anythingTroubling = localStorage.getItem('anythingTroubling');
 
-    // Function to calculate the match score for each product
     const calculateMatchScore = (product: Product) => {
         const { title, body_html, tags } = product;
         let score = 0;
@@ -72,15 +73,15 @@ const Results: React.FC<ResultsProps> = ({ userAnswers }) => {
 
         userCriteria.forEach(criteria => {
             if (criteria) {
-                // Increase score based on matches
+
                 if (title.toLowerCase().includes(criteria.toLowerCase())) {
-                    score += 3; // Title match is more significant
+                    score += 3;
                 }
                 if (body_html.toLowerCase().includes(criteria.toLowerCase())) {
-                    score += 2; // Description match
+                    score += 2;
                 }
                 if (tags.some(tag => tag.toLowerCase().includes(criteria.toLowerCase()))) {
-                    score += 1; // Tag match
+                    score += 1;
                 }
             }
         });
@@ -88,7 +89,7 @@ const Results: React.FC<ResultsProps> = ({ userAnswers }) => {
         return score;
     };
 
-    // Filtering logic
+
     const filteredProducts = products.filter(product => {
         const userCriteria = [hairType, howOftenWashHair, wantedBenefit, anythingTroubling];
         return userCriteria.some(criteria => criteria && (
@@ -98,45 +99,34 @@ const Results: React.FC<ResultsProps> = ({ userAnswers }) => {
         ));
     });
 
-    // Calculate match scores and sort products by score
+
     const scoredProducts = filteredProducts.map(product => ({
         product,
         score: calculateMatchScore(product),
-    })).sort((a, b) => b.score - a.score); // Sort by score in descending order
+    })).sort((a, b) => b.score - a.score);
 
-    // Custom next arrow component
+
     const SampleNextArrow = (props: any) => {
-        const { className, style, onClick } = props;
+        const { className, onClick } = props;
         return (
             <div
-                className={`${className} slick-arrow`}
-                style={{ ...style, display: 'block', background: '#1e90ff' }}
+                className={`${className} slick-next-arrow`}
                 onClick={onClick}
-            />
+                style={{ top: '40%', marginRight: '-20px' }}
+            >
+                <img src={arrow} alt="Next" />
+            </div>
         );
     };
 
-    // Custom previous arrow component
-    const SamplePrevArrow = (props: any) => {
-        const { className, style, onClick } = props;
-        return (
-            <div
-                className={`${className} slick-arrow`}
-                style={{ ...style, display: 'block', background: '#1e90ff' }}
-                onClick={onClick}
-            />
-        );
-    };
 
-    // Slider settings
     const settings = {
-        dots: true, // Enable dots for navigation
+        dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 3,
-        nextArrow: <SampleNextArrow />, // Custom next arrow
-        prevArrow: <SamplePrevArrow />, // Custom previous arrow
+        nextArrow: scoredProducts.length > 2 ? <SampleNextArrow /> : null,
         responsive: [
             {
                 breakpoint: 768,
@@ -155,17 +145,31 @@ const Results: React.FC<ResultsProps> = ({ userAnswers }) => {
         ],
     };
 
+    const handleRetakeQuiz = () => {
+        navigate('/');
+        localStorage.clear();
+    };
+
     return (
         <div className="results">
             <div className="results__background">
                 <div className="results__overlay">
-                    <h1 className="results__title">Your Recommended Products</h1>
+                    <h1 className="results__title">Build your everyday self<br /> care routine.</h1>
+                    <p className="results__description">Perfect for if you're looking for soft, nourished skin, our moisturizing body washes are made with skin-natural nutrients that work with your skin to replenish moisture. With a light formula, the bubbly lather leaves your skin feeling cleansed and cared for. And by choosing relaxing fragrances, you can add a moment of calm to the end of your day.</p>
+                    <button className="button-text results__button" onClick={handleRetakeQuiz}>Retake the quiz</button>
                 </div>
             </div>
             {loading ? (
                 <p>Loading...</p>
             ) : (
                 <Slider {...settings}>
+                    {/* Render the first text-only card */}
+                    <div className="text-only-card">
+                        <h2>Daily routine</h2>
+                        <p>Perfect for if you're looking for soft, nourished skin, our moisturizing body washes are made with skin-natural nutrients that work with your skin to replenish moisture. With a light formula, the bubbly lather leaves your skin feeling cleansed and cared for. And by choosing relaxing fragrances, you can add a moment of calm to the end of your day.</p>
+                    </div>
+
+                    {/* Render the rest of the products */}
                     {scoredProducts.map(({ product }) => (
                         <div key={product.id}>
                             <ProductCard
