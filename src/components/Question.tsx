@@ -15,13 +15,14 @@ const Question: React.FC<QuestionProps> = ({ question, answers, questionKey, nex
     const navigate = useNavigate();
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
 
-    
+    const alphabetLabels = "abcdefghijklmnopqrstuvwxyz".split(""); // Array of letters for labels
+
     useEffect(() => {
         const storedAnswer = localStorage.getItem(questionKey);
         if (storedAnswer) {
             setSelectedAnswer(storedAnswer);
         }
-    }, [navigate, questionKey]);
+    }, [questionKey]);
 
     const handleAnswerSelection = (answer: string) => {
         setSelectedAnswer(answer); 
@@ -40,13 +41,13 @@ const Question: React.FC<QuestionProps> = ({ question, answers, questionKey, nex
         <div className="question-container">
             <h1 className="question-title">{question}</h1>
             <div className="answer-buttons">
-                {answers.map((answer) => (
+                {answers.map((answer, index) => (
                     <button
                         key={answer}
                         className={`outlined-button ${selectedAnswer === answer ? 'selected' : ''}`}
                         onClick={() => handleAnswerSelection(answer)}
                     >
-                        {answer}
+                        {alphabetLabels[index]}. {answer}
                     </button>
                 ))}
             </div>
